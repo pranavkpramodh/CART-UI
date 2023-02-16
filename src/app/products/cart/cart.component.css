@@ -1,0 +1,22 @@
+table, thead, tr, th, td{
+    border: 1px solid rgba(0, 0, 0, 0.474);
+    padding: 1px 15px;
+}
+
+
+tr td img{
+    max-width: 300px;
+    width: 100%;
+    padding: 2px;
+}
+
+.coupon img{
+    width: 130px;
+    min-height: 50px;
+}
+
+.empty{
+    max-width: 798px;
+    max-height: 310px;
+    min-height: 310px;
+}

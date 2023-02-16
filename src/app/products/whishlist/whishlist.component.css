@@ -1,0 +1,26 @@
+
+img{
+    max-width: 150px;
+    max-height: 200px;
+    min-height: 200px;
+    width: 100%;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+}
+
+.wish img:hover{
+    transition: .5s ease-in-out;
+    transform: scale(1.2);
+}
+
+.img-container{
+    display: flex;
+    justify-content: center;
+    padding: 25px 0;
+}
+
+.empty{
+    max-width: 798px;
+    max-height: 310px;
+    min-height: 310px;
+}

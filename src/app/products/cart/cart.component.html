@@ -1,0 +1,99 @@
+
+<div class="container d-flex justify-content-center py-5" *ngIf="cartitem.length == 0">
+    <div class="row" >
+        <div class="col">
+            <img src="https://cdn.dribbble.com/users/2046015/screenshots/4591856/first_white_girl_drbl.gif" width="400px" height="300px" alt="">
+            <div class="d-flex flex-column align-items-center ">
+            <h3 class="text-center mb-4">Your cart is empty</h3>
+            <button class="btn btn-primary my-5 mt-2" style="width: 150px;" routerLink="/">Shop Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container d-flex justify-content-center p-5" *ngIf="cartitem.length != 0">
+    <div class="row">
+        <div class="col">
+            <table style="width: 900px; padding: 10px;">
+                <thead>
+                    <tr >
+                        <th >Number</th>
+                        <th >Name</th>
+                        <th >Image</th>
+                        <th >Description</th>
+                        <th >Price</th>
+                        <th >Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let product of cartitem, let i = index">
+                       <td>{{i+1}}</td>
+                       <td>{{product.title}}</td>
+                       <td><img [src]="product.image" alt="t-shirt"></td>
+                       <td>{{product.description}}</td>
+                       <td>{{product.price}}</td>
+                       <td ><i (click)="removecart(product)" class="fa fa-solid fa-trash text-danger" style="font-size: 20px;"></i></td>
+                    </tr>
+                </tbody>
+                </table>
+                <div style="display: flex; justify-content:space-between; padding: 15px 0;">
+                    
+                    <div>
+                        <button class="btn btn-danger me-2" (click)="removeall()">EmptyCart</button>
+                        <button class="btn btn-success me-2" routerLink="">Shop More</button>
+                        <button class="btn btn-warning me-2"data-bs-toggle="modal" data-bs-target="#exampleModal">Check Out</button>
+                    </div>
+
+                    <h4 class= text-primary >Grand Total: {{grand}} </h4>
+                
+                </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Check Out Page</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h1>Delivery Adrress</h1>
+
+          <form action="">
+            <input type="text" placeholder="Enter Your name" class="form-control mb-2" autocomplete="off">
+            <input type="text" placeholder="House No" class="form-control mb-2" autocomplete="off">
+            <input type="text" placeholder="Pincode" class="form-control mb-2" autocomplete="off">
+            <input type="text" placeholder="State" class="form-control mb-2" autocomplete="off">
+            <input type="text" placeholder="Country" class="form-control mb-2" autocomplete="off">
+            <input type="text" placeholder="Contact No" class="form-control mb-2" autocomplete="off">
+          </form>
+        </div>
+
+
+
+        <h3>Discounts</h3>
+        <div [ngSwitch]="grand" class="coupon">
+            <img (click)="discount5per()"  *ngSwitchDefault="5" src="https://media.istockphoto.com/id/1270314063/vector/promo-code-coupon-code-label-design-geometric-flat-banner-modern-vector-illustration.jpg?s=612x612&w=0&k=20&c=GeVTLxdNr-uIeFGatkk0-bAQMn0XoW4-Cs8oJODJEns=" alt="">
+            <img (click)="discount5per()"  *ngSwitchCase="5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT3o6h3MutsDrF0bdJD9YBv8IkOg3s5T4CR6MNSkdpi0LA1oqvtMXxvbmO_3sMZ-HVdrs&usqp=CAU" alt="">
+            <img (click)="discount10per()"  *ngSwitchCase="10" src="https://spng.pngfind.com/pngs/s/79-791202_10-off-hotel-revenue-course-workshops-with-hsmai.png" alt="">
+            <img (click)="discount50per()"  *ngSwitchCase="50" src="https://w7.pngwing.com/pngs/301/385/png-transparent-discounts-and-allowances-sales-coupon-advertising-online-shopping-others-text-trademark-retail.png" alt="">
+        </div>
+
+        <div>
+            <b>Your Grand Tota: {{updatedgrand}}</b>
+        </div>
+
+
+        <div class="modal-footer" >
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Proceed</button>
+        </div>
+     
+      </div>
+    </div>
+  </div>
